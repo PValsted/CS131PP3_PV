@@ -1,34 +1,71 @@
 package linkedlist;
-
+/**
+ * This class models a linked list in which each node has a pointer
+ * to the parameterized generic object node after it, except the tail which does not have a node after.
+ * This class was modified to incorporate nodes that can use generics.
+ * @author rkelley/njohnson/pvalsted
+ * Programming Project 1 Start Project
+ * CS131ON
+ */
 public class GenericLinkedList {
+
+	private GenericNode head; //node to represent the head of the list
+	private GenericNode tail; //node to represent the tail (end) of the list
+	private int length; //variable to keep track of the number of elements in the list
 	
-	private Node head = null;
-	private int length = 0;
-	private Node tail = this.head;
-  
-	public boolean isEmpty() {
-		if (this.head == null)
-			return true; 
-		return false;
+	/**
+	 * The constructor for this object initializes the list such that
+	 * it is empty (no head or tail) node.
+	 */
+	public GenericLinkedList()
+	{
+		head=null;
+		length=0;
+		tail=head;
+	}//end empty-argument constructor
+	
+	/**
+	 * Method to see if there are any elements in the list.
+	 * @return boolean true/false
+	 */
+	public boolean isEmpty()
+	{
+		if (head==null) { return true;}
+		else return false;
 	}//end isEmpty
-  
-	public Node getList() {
-	  
-		return this.head;
+	
+	/**
+	 * This method returns the head node of the list from which
+	 * you can traverse the entire by following node links.
+	 * @return
+	 */
+	public GenericNode getList()
+	{
+		return head;
 	}//end getList
-  
-	public void addNode(Node aNode) {
-	  
-		if (isEmpty()) {
-			this.head = aNode;
-			this.tail = this.head;
+	
+	/**
+	 * This method adds a new node to the list. It first checks to see
+	 * if the list is empty. If so, it sets the head and the tail nodes
+	 * to the node passed in. If the list is not empty it places the node
+	 * at the end of the list and updates the pointers in the tail. This
+	 * implementation does not support adding entries to the middle
+	 * of the list.
+	 * @param aNode
+	 */
+	public void addNode(GenericNode aNode)
+	{
+		if (isEmpty() ) {
+			head = aNode;
+			tail=head;
 			return;
-		}//end if-statement
-    
-		this.tail.setNextNode(aNode);
-		this.tail = this.tail.getNextNode();
-		this.tail.setNextNode(null);
-		this.length++;
-    	}//end addNode
-  
+		}
+		
+		tail.setNextNode(aNode);
+		tail=tail.getNextNode();
+		tail.setNextNode(null);
+		length++;
+		
+	}//end addNode
+
 }//end class
